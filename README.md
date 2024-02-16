@@ -37,5 +37,26 @@ $ sudo binnacle -vv test_tls.t
 STATUS  TOTAL  PASSED  FAILED  DURATION  SPEED(TPM)  FILE
 ==================================================================
 OK         70      70       0        1m          62  test_tls.t
+
+Test Files: Total=1  Passed=1  Failed=0
 ```
 
+## Gluster TLS with Node replacement test
+
+- Create cluster with 2 servers (`server1.gluster` and `server2.gluster`)
+- SSL based setup
+- Simulate the node failure (`server2.gluster`)
+- Remove brick and detach the peer
+- Setup fresh node using the same hostname
+- Setup SSL key and Certificate in the new node
+- Copy the fresh certificates from all the nodes and create `glusterfs.ca` file
+- Peer probe and add brick
+
+```
+$ sudo binnacle -vv test_tls_change_node.t 
+STATUS  TOTAL  PASSED  FAILED  DURATION  SPEED(TPM)  FILE
+==================================================================
+OK         71      71       0        1m          63  test_tls_change_node.t
+
+Test Files: Total=1  Passed=1  Failed=0
+```
